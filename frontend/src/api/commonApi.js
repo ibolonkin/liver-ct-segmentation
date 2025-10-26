@@ -131,11 +131,11 @@ export const login = async (email, password) => {
   }
 };
 
-export const register = async (name, email, password) => {
+export const register = async (name, email, password, approval) => {
   try {
     const response = await axios.post(
       `${API_URL}/auth/registration`,
-      { name, email, password },
+      { name, email, password, approval },
       {
         _skipAuth: true,
       }

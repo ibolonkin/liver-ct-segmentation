@@ -104,3 +104,22 @@ body {
   color: #13315c;
   text-decoration: none;
 }
+
+.confirm-checkbox-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 15px 0;
+  padding: 10px;
+  max-width: 400px;
+}
+
+.confirm-checkbox {
+  margin-top: 3px;
+}
+
+.checkbox-text {
+  font-size: 14px;
+  line-height: 1.4;
+  font-family: 'Montserrat', sans-serif;
+}

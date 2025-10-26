@@ -6,6 +6,7 @@ import { validateRegistrationForm, validateEmail, validatePassword } from '../..
 const Registration = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [formError, setFormError] = useState('');
+  const [isChecked, setIsChecked] = useState(false);
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: '',
@@ -33,7 +34,7 @@ const Registration = () => {
 
     setIsLoading(true);
     try {
-      const result = await register(formData.name, formData.email, formData.password);
+      const result = await register(formData.name, formData.email, formData.password, isChecked);
 
       if (result.success) {
         navigate('/login');
@@ -58,6 +59,10 @@ const Registration = () => {
       ...prev,
       [name]: '',
     }));
+  };
+
+  const handleCheckboxChange = (e) => {
+    setIsChecked(e.target.checked);
   };
 
   const isFormValid = validateEmail(formData.email) && validatePassword(formData.password) && formData.password === formData.confirmPassword && formData.name.trim() !== '';
@@ -128,6 +133,17 @@ const Registration = () => {
               required
             />
             {errors.confirmPassword && <div style={{ color: 'red', fontSize: '0.8rem' }}>{errors.confirmPassword}</div>}
+          </div>
+
+          <div className="confirm-checkbox-container">
+            <input
+              className="confirm-checkbox"
+              type="checkbox"
+              id="consent"
+              checked={isChecked}
+              onChange={handleCheckboxChange}
+            />
+            <label htmlFor='consent' className="checkbox-text">Я даю согласие на использование изменённых контуров для переобучения модели</label>
           </div>
 
           <button
